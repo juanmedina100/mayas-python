@@ -45,14 +45,20 @@ def main(page: ft.Page):
         
 
     linea1 = ft.TextField()
-    btn = ft.ElevatedButton(
+    btn = ft.FilledButton(
         "Calcular Maya",on_click=decimal_a_maya, bgcolor=ft.colors.GREEN_300
     )
     respuesta = ft.Text()
     respuesta.value = "𝍩"  # símbolo de cero
-
+    cajaEspacio = ft.Container(height=80)
+    imag = ft.Image(
+        src="maya2.jpg",
+        width=200,
+        height=200,
+        fit=ft.ImageFit.CONTAIN,
+    )
     col = ft.Column(
-        [linea1,btn, respuesta,caja],
+        [cajaEspacio,imag,linea1,btn, caja],alignment=ft.MainAxisAlignment.CENTER,horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=10
     )
     # col.controls.append(ft.Text("Ingrese un número decimal:"))
     page.add(col)
