@@ -30,18 +30,15 @@ def main(page: ft.Page):
             if resto == 0:
                 niveles.append("𝍩")
             else:
-                barras = "━━━━━━━━ " * (resto // 5)
+                barras = "▀▀▀▀ " * (resto // 5)
                 puntos = "● " * (resto % 5)
                 niveles.append(puntos + "\n" + barras)
             respuesta.value = ""
             caja.content.controls.clear()  # Limpiar la caja antes de agregar nuevos controles
-            # Recorrer niveles en orden inverso y acumularlos en respuesta.value
             for level in reversed(niveles):  # Invertir el orden
-                # respuesta.value += str(level).strip() + "\n"
                 caja.content.controls.append(ft.Container(content=ft.Text(str(level).strip(),text_align=ft.TextAlign.CENTER,size=20),bgcolor=ft.Colors.BLACK26, width=140))
             caja.update()
 
-            # respuesta.update()  # Actualizar la interfaz
         
 
     linea1 = ft.TextField()
@@ -49,32 +46,21 @@ def main(page: ft.Page):
         "Calcular Maya",on_click=decimal_a_maya, bgcolor=ft.colors.GREEN_300
     )
     respuesta = ft.Text()
-    respuesta.value = "𝍩"  # símbolo de cero
     cajaEspacio = ft.Container(height=80)
     imag = ft.Image(
         src="maya2.jpg",
-        width=200,
+        # width=200,
         height=200,
-        fit=ft.ImageFit.CONTAIN,
+        border_radius=ft.border_radius.all(10),
+        fit=ft.ImageFit.FIT_WIDTH,
     )
     col = ft.Column(
-        [cajaEspacio,imag,linea1,btn, caja],alignment=ft.MainAxisAlignment.CENTER,horizontal_alignment=ft.CrossAxisAlignment.CENTER, spacing=10
+        [cajaEspacio,imag,linea1,btn, caja],
+        alignment=ft.MainAxisAlignment.CENTER,
+        horizontal_alignment=ft.CrossAxisAlignment.CENTER, 
+        scroll=ft.ScrollMode.ALWAYS, spacing=10
     )
-    # col.controls.append(ft.Text("Ingrese un número decimal:"))
     page.add(col)
-
-    # page.floating_action_button = ft.FloatingActionButton(
-    #     icon=ft.Icons.ADD, on_click=increment_click
-    # )
-    # page.add(
-    #     ft.SafeArea(
-    #         ft.Container(
-    #             counter,
-    #             alignment=ft.alignment.center,
-    #         ),
-    #         expand=True,
-    #     )
-    # )
 
 
 ft.app(main)
